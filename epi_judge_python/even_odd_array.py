@@ -8,8 +8,19 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def even_odd(A: List[int]) -> None:
-    # TODO - you fill in here.
-    return
+
+    next_even, next_odd = 0, len(A) - 1
+    while next_even < next_odd:
+        if A[next_even] % 2 == 0:
+            next_even += 1
+        else:
+            A[next_even], A[next_odd] = A[next_odd], A[next_even]
+            next_odd -= 1
+    print(A)
+
+
+# even_odd([1, 4, 3, 7, 2, 10])
+print([1] + [0] * 10)
 
 
 @enable_executor_hook
@@ -22,15 +33,18 @@ def even_odd_wrapper(executor, A):
     for a in A:
         if a % 2 == 0:
             if in_odd:
-                raise TestFailure('Even elements appear in odd part')
+                raise TestFailure("Even elements appear in odd part")
         else:
             in_odd = True
     after = collections.Counter(A)
     if before != after:
-        raise TestFailure('Elements mismatch')
+        raise TestFailure("Elements mismatch")
 
+
+"""
 
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main('even_odd_array.py',
                                        'even_odd_array.tsv', even_odd_wrapper))
+"""
