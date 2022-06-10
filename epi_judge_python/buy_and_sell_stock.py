@@ -4,8 +4,40 @@ from test_framework import generic_test
 
 
 def buy_and_sell_stock_once(prices: List[float]) -> float:
-    # TODO - you fill in here.
-    return 0.0
+
+    # Brute Force O(n^2)
+    # res = []
+    # for i in range(len(prices) - 1):
+    #     for j in range(1, len(prices)):
+    #         if prices[i] < prices[j]:
+    #             print(prices[i], prices[j])
+    #             res.append(prices[j] - prices[i])
+    #         # else:
+    #         #     res.append(abs(prices[j] - prices[i]))
+    # if len(res) == 0:
+    #     return 0
+    # return max(res)
+
+    ####
+    left = 0
+    right = 1
+    current_profit = float("inf")
+    max_profit = 0.0
+    while right < len(prices):
+        current_profit = prices[right] - prices[left]
+        if prices[left] < prices[right]:
+            max_profit = max(current_profit, max_profit)
+        else:
+            left = right
+        right += 1
+
+
+    return max_profit
+
+
+# print(buy_and_sell_stock_once([310,315,275,295,260,270,290, 230, 255, 250]))
+# print(buy_and_sell_stock_once([0.3, 0.3, 0.1]))
+# print(buy_and_sell_stock_once([0.3, 0.2, 0.3]))
 
 
 if __name__ == '__main__':
