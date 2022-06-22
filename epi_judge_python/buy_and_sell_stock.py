@@ -5,6 +5,21 @@ from test_framework import generic_test
 
 def buy_and_sell_stock_once(prices: List[float]) -> float:
 
+    # c = 0
+    # n = 1
+    # diff = []
+    # while n < len(prices) - 1:
+    #     print(c, n)
+    #     if prices[c] - prices[n] < 0:
+    #         c += 1
+    #         n += 1
+    #     if prices[c] - prices[n] ==  0:
+    #         n = c + 1
+    #     else:
+    #         diff.append(prices[c] - prices[n])
+    #         n += 1
+    # return max(diff)
+
     # Brute Force O(n^2)
     # res = []
     # for i in range(len(prices) - 1):
@@ -31,7 +46,6 @@ def buy_and_sell_stock_once(prices: List[float]) -> float:
             left = right
         right += 1
 
-
     return max_profit
 
 
@@ -40,8 +54,9 @@ def buy_and_sell_stock_once(prices: List[float]) -> float:
 # print(buy_and_sell_stock_once([0.3, 0.2, 0.3]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('buy_and_sell_stock.py',
-                                       'buy_and_sell_stock.tsv',
-                                       buy_and_sell_stock_once))
+        generic_test.generic_test_main(
+            "buy_and_sell_stock.py", "buy_and_sell_stock.tsv", buy_and_sell_stock_once
+        )
+    )
